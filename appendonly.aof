@@ -1,5 +1,1 @@
-SET name Alice
-SET age 24
-SET name Alice
-SET age 24
-FLUSH
+MSET name Alice age 24

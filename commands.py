@@ -48,7 +48,6 @@ def handle_del(tokens):
     return delete_key(tokens[1])
 
 def handle_flush(tokens):
-    append_to_aof(tokens)
     return flush_all()
 
 def handle_ttl(tokens):

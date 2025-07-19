@@ -4,7 +4,7 @@ monkey.patch_all()
 import socket
 from protocol import parse_request, encode_response
 from commands import execute_command
-from aof import replay_aof
+from aof import replay_aof, disable_aof, enable_aof
 import gevent
 from gevent.server import StreamServer
 
@@ -37,11 +37,13 @@ def start_gevent_server(host="127.0.0.1",port=6379):
 def preload_from_aof():
     """Replays AOF commands at startup to restore state."""
     print("[BOOT] Replaying AOF file")
+    disable_aof()
     commands = replay_aof()
     count = 0
     for cmd in commands:
         execute_command(cmd)
         count += 1
+    enable_aof()
     print(f"[BOOT] Loaded {count} command(s) from AOF")
 
 if __name__ == '__main__':
