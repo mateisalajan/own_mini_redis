@@ -1,0 +1,5 @@
+SET name Alice
+SET age 24
+SET name Alice
+SET age 24
+FLUSH
